@@ -1,0 +1,60 @@
+BEGINTASK<Task1, Null>
+1	MODULE Module1
+2	CONST robtarget Target_10:=[[326.494, 0, 634.740], [0.104, 0, 0.983, 0], [-1, 0, -1, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+3	CONST robtarget Target_20:=[[474.642, 0, 298.999], [0.087, 0, 0.996, 0], [-1, 0, 0, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+4	CONST robtarget Target_30:=[[17.446, 0, 764.740], [0.809, 0, 0.587, 0], [0, -1, 0, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+5	PERS bool obstacle:=FALSE;
+6	PERS tasks tasklist{2}:=[["Task1"],["Task2"]];
+7	VAR syncident sync1;
+8	PROC MAIN()
+9		IF do1=1 THEN
+10		    obstacle:=TRUE;
+11		    WaitSyncTask sync1,tasklist;
+12		    Path_backward;
+13		ELSE
+14		    Path_forward;
+15		ENDIF
+16	ENDPROC
+17	PROC Path_forward()
+18		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+19		MoveJ Target_20,v1000,z100,MyTool\WObj:=wobj0;
+20		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+21	ENDPROC
+22	PROC Path_backward()
+23		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+24		MoveJ Target_30,v1000,z100,MyTool\WObj:=wobj0;
+25		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+26	ENDPROC
+27	ENDMODULE
+ENDTASK		
+
+BEGINTASK<Task2, Null>
+1	MODULE Module1
+2	CONST robtarget Target_10:=[[195.6535, -502.4544, 902.740], [0.617, 0, 0.786, 0], [-1, 0, -1, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+3	CONST robtarget Target_20:=[[576.642, -502.4544, 408.999], [0.087, 0, 0.996, 0], [-1, 0, 0, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+4	CONST robtarget Target_30:=[[-234.446, -502.4544, 880.740], [0.868, 0, 0.495, 0], [-1, 0, -1, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+5	PERS bool obstacle:=FALSE;
+6	PERS tasks tasklist{2}:=[["Task1"],["Task2"]];
+7	VAR syncident sync1;
+8	PROC main()
+9		WaitSyncTask sync1,tasklist;
+10		IF obstacle=FALSE THEN
+11		    Path_forward;
+12		ELSE
+13		    Path_backward;
+14		ENDIF
+15	ENDPROC
+16	PROC Path_forward()
+17		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+18		MoveJ Target_20,v1000,z100,MyTool\WObj:=wobj0;
+19		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+20	ENDPROC
+21	PROC Path_backward()
+22		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+23		MoveJ Target_30,v1000,z100,MyTool\WObj:=wobj0;
+24		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+25	ENDPROC
+26	ENDMODULE
+ENDTASK		
+
+
