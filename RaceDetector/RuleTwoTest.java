@@ -7,7 +7,7 @@ import Main.Parser;
 import java.util.*;
 import java.io.*;
 
-public class RuleTwoTest {
+public class Rule2Test {
     private String instructionName;
     private static Integer lineNumber = 0;
     private static ArrayList<Parser> parsedTasks = new ArrayList<>();
@@ -16,7 +16,7 @@ public class RuleTwoTest {
 
     public static void main(String[] args) throws IOException {
 //        FileReader fr = new FileReader("flex loader.txt");
-        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Input-files\\rule2.txt"); // path to source rapid file
+        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Examples\\rule2.txt"); // path to source rapid file
         BufferedReader br = new BufferedReader(fr);
         String lbl = "";
         while ((lbl = br.readLine()) != null) {
@@ -60,7 +60,7 @@ public class RuleTwoTest {
 
     private static boolean c3() throws IOException {
 
-        FileReader fr1 = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Input-files\\rule2.txt"); // path to source rapid file
+        FileReader fr1 = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Examples\\rule2.txt"); // path to source rapid file
         BufferedReader br1 = new BufferedReader(fr1);
         String lbl = ""; String lbl2 = ""; String lbl2last = "";
 
