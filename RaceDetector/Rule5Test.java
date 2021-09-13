@@ -14,7 +14,7 @@ public class Rule5Test {
     public static ArrayList<ArrayList<String>> sharedRobTargetVariables = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Input-files\\rule5.txt"); // path to source rapid file
+        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Examples\\rule5.txt"); // path to source rapid file
         BufferedReader br = new BufferedReader(fr);
         String lbl = "";
         while ((lbl = br.readLine()) != null) {
@@ -56,7 +56,7 @@ public class Rule5Test {
     }
 
     private static boolean c3() throws IOException {
-        FileReader fr1 = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Input-files\\rule5.txt");
+        FileReader fr1 = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Examples\\rule5.txt");
 
         BufferedReader br1 = new BufferedReader(fr1);
         String lbl = ""; String lbl2 = ""; String lbl2last = "";
