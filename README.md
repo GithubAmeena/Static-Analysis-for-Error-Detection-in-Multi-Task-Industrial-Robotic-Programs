@@ -3,15 +3,23 @@ Static data race detector project structure and working:-
 Static data race detector is a data race detector which analyses statically the input multi task programs for industrial robots and tells us whether the multi task programs are potentially data racy or not. The implementation is done specifically for ABB Rapid programming language.
 Structure of the project:
 
-Examples-
-Input to our race detector is a multi -task Rapid program consisting of more than one task. Here we have a set of examples as text files one example for each rule that we implemented in the race detector.
-Race Detector:-
-This is the main static data race detector implementation consists of seven rules, one rule per file which checks the input Rapid program for data race.
-Functionalities:-
-Will shows all the functions related to our parser program . From parser file, the race detector code get the Wait instructions and synchronization instructions  for further processing.
 
 Src:-
 Src consists of the parser file and associated functionalities.
+
+
+Examples-
+Input to our race detector is a multi -task Rapid program consisting of more than one task. Here we have a set of examples as text files one example for each rule that we implemented in the race detector.
+
+
+Functionalities:-
+Will shows all the functions related to our parser program . From parser file, the race detector code get the Wait instructions and synchronization instructions  for further processing.
+
+
+Race Detector:-
+This is the main static data race detector implementation consists of seven rules, one rule per file which checks the input Rapid program for data race.
+
+
 Static data race detector working:-
 DATA RACES AND OCCUR IN BETWEEN RELATIONS IN RAPID
 Let P be a multi-task Rapid program. Let s1 and s2 be two instructions(can be a block of statements consisting of shared variable access also) in P, with associated commands c1 and c2. Let t1 and t2 be two tasks in the program P which may or may not executes in parallel with each other. We say that s1 and s2 are involved in a data race in P, if they are conflicting accesses that may happen in parallel in P or we can say there must be a racy situation if s2 occurs in between s1 or s1 occurs in between s2.
