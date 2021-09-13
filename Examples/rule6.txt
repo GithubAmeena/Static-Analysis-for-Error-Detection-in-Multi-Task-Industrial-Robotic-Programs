@@ -1,0 +1,33 @@
+BEGINTASK<Task1, Null>
+	MODULE Module1
+	CONST robtarget Target_10 :=[[326.494, 425, 634.740], [0.104, 0, 0.983, 0], [-1, 0, -1, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Target_20 :=[[-474.642, 265, 298.999], [0.087, 0, 0.996, 0], [-1, 0, 0, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Initial_point :=[[0.446, 0, 764.740], [0.809, 0, 0.587, 0], [0, -1, 0, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	PERS string routine_string :="";
+	PROC MAIN()
+		IF Target_10.trans.x>0 and Target_20.trans.x<0
+		    Path_Q1_Q2;
+		routine_string:="routine_back";
+	ENDPROC
+	PROC Path_Q1_Q2()
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_20,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Initial_point,v1000,z100,MyTool\WObj:=wobj0;
+	ENDPROC
+ 	ENDMODULE
+ENDTASK		
+
+BEGINTASK<Task2, Null>
+	MODULE Module1
+	PERS robtarget Target_10 ;
+	PERS robtarget Target_20 ;
+	PERS string routine_string :="";
+	PROC MAIN()
+		routine_back ;
+	ENDPROC
+	PROC routine_back()
+	    	Target_10.trans.x:=0;
+	    	Target_20.trans.x:=0;
+	ENDPROC
+	ENDMODULE
+ENDTASK		
