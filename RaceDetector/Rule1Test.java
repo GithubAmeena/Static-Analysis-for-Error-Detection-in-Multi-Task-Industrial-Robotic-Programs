@@ -16,7 +16,7 @@ public class Rule1Test {
 
     public static void main(String[] args) throws IOException {
 //        FileReader fr = new FileReader("flex loader.txt");
-        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Input-files\\rule1.txt"); // path to source rapid file
+        FileReader fr = new FileReader("C:\\Users\\Ameena\\Downloads\\task analyzer1\\Rapid-program-parser\\src\\Examples\\rule1.txt"); // path to source rapid file
         BufferedReader br = new BufferedReader(fr);
         String lbl = "";
         while ((lbl = br.readLine()) != null) {
