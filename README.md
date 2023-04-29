@@ -1,6 +1,6 @@
-Static data race detector project structure and working:-
+Static analysis for error detection in multi-task Industrial robotic programs
 
-Static data race detector is a data race detector which analyses statically the input multi task programs for industrial robots and tells us whether the multi task programs are potentially data racy or not. The implementation is done specifically for ABB Rapid programming language.
+This project is an error  detector which analyses statically the input multi task programs for industrial robots and tells us whether the multi task programs are potentially erronious or not. The implementation is done specifically for ABB Rapid programming language.
 Structure of the project:
 
 
