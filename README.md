@@ -13,11 +13,38 @@ Input to our race detector is a multi -task Rapid program consisting of more tha
 
 
 Functionalities:-
-Will shows all the functions related to our parser program . From parser file, the race detector code get the Wait instructions and synchronization instructions  for further processing.
+Will shows all the functions related to our parser program . From parser file, the error detector and race detector code get the Wait instructions and synchronization instructions  for further processing.
+Part 1: Error Detection:-
+The project basically checks for ERRORS among the different tasks in a multitasking Rapid programs. For that first we implement a Parser for parsing Rapid program tasks. We different functionalities like MangeWaitInstructions,ManageSyncinstructions, etc. We parse through each and every sentences in the program line by line and stored the output. In Rapid we know global variables are declared using PERS in each tasks. So during parsing, they extracted the global variables and store them in "globalTasklist" in the form of LinkedHashmap<String, Bool_lis>, where the bool list comprises of 4 Boolean representing them to be true if they are present in the corresponding Roboy. The next step in our project is analysing the different RULES(1 to 7) defined later, starting with the WaitSyncTask(Rule#1(a)) and SyncMoveOn-SyncMoveOff which is Rule#1(b) (Line 64-65 of CheckAllRules/TaskAnalyzer.java).Then the Rule#2 (Line 66), Rule#3 (Line 67) , Rule#4, ... Rule#7(Line 71) are checked by calling the corresponding function in  CheckAllRules/TaskAnalyzer.java file. The input to that file is a multitask Rapid program consists of two or more tasks (Each "TASK1" is Robot1 ,"TASK2" is Robot2 ,"TASK3" is Robot3 ,"TASK4" is Robot4) which is seperated by using BEGINTASK-ENDTASK commands. We need to check whether the RULES are satisfied or not . Rules are nothing but whether there exists some Wait instructions and Sync instruction in a particular order around the same set of shared variables in ALL the 4 Robots. There are totally 7 rules to check. Implemented one(Rule 1(a) using WaitSyncTask instruction and Rule 1(b) using SyncMove instruction). It works fine. So as an output we need the set of shared variables in all the tasks, and check whether the Wait instruction is placed in the correct order as specified in the Rule in both the tasks. Finally, output the results like the multitask program has an ERROR or not. If you compile the already given project, you will understand how all the rules are working. I'm attaching examples  here to understand the rules, I also attaching the same examples as seperate input files(name of each input file is according to the rules) along with the project.So you can pick the files directly from there ( In the "InputFiles" folder).
 
 
-Race Detector:-
-This is the main static data race detector implementation consists of seven rules, one rule per file which checks the input Rapid program for data race.
+RULES IMPLEMENTED in the project are :
+Rule 1(a):- 
+	Check for All the Robots whether there is a WaitSyncTask instruction in the first task after the updation of all the shared variables, and before the updation of the same set of shared variables in the other tasks. Also we check that whether for a WaitSyncTask called out , there exists a VAR syncident or not . And we check that there is no duplication of WaitSync calls or there isnt any PERS "task" variable which doesn't exist in the globalTasklist , but is used for a WaitSync call .  These all conditions of WaitSync should be same in each of the corresponding calls according to the Robots of that particular PERS "task" in globalTasklist.
+Rule 1(b):- 
+	Check for All the Robots whether there is a SyncMove block instruction in the first task after the updation of all the shared variables, and before the updation of the same set of shared variables in the other tasks. Also we check that whether for a SyncMove block called out , there exists a VAR syncident or not corresponding to the syncident used for SyncMoveOn and SyncMoveOff. And we check that there is no duplication or NESTING of SyncMove  calls or there isnt any PERS "task" variable which doesn't exist in the globalTasklist , but is used for a WaitSync call . Also the syncident variable of SyncMoveOn and SyncMoveOff of a SyncMove block must not be same and the order of the id of MOVE commands in  between them should be the same. These all conditions of SyncMove block should be same in each of the corresponding calls according to the Robots of that particular PERS "task" .
+Rule 2:- 
+	Check whether there is a WaitUntilTestAndSet(consider as a lock) instruction along with a boolean variable  before  the updation of all the shared variables and the same boolean variable is set to false (consider as an unlock)after  the updation of shared variables  in both the tasks.
+Rule 3:-
+	Check whether there is a boolean variable that is set to true  in the first task before the updation of all the shared variables, and there is a WaitUntil instruction with the same boolean variable before the updation of the same set of shared variables in the second task.
+Rule 4:-
+	Check whether there is a SETDO instruction with a digital signal(eg.do1) after the updation of all the shared variables in the first task, and there is an ISignalDO instruction with the same digital output (eg.do1) before the updation of all shared variables in the second task.
+Rule 5:-
+	Check whether there is a SETDO instruction with a digital signal(eg.do1) in the first task after the updation of all  the shared variables, and a WaitDO instruction with the same digital signal(eg.do1)before the updation of the same set of shared variables in the second task.
+Rule 6:-
+	There is a global variable as string is shared in both the tasks using PERS and in the first task after updation of all the shared variables call a procedure in the second task using that routine string, and check whether the corresponding  procedure is defined in the second task and that procedure uses the shared variables as in the first task.
+Rule 7:-
+    Check whether there is a set of shared variables in both the tasks and check whether in the second task the set of shared variables are declared as a trap routine inside an IEnable-IDisable block inside main.
+
+
+ASSUMPTIONS :-
+1. The Robot names should be of the form "T_ROB1","T_ROB2","T_ROB3"and "T_ROB4" .
+2. The PERS task names should be of the form "task1","task2",etc.
+3. The input file of RAPID code should be of the form RObot1->RObot2->RObot3->RObot4
+
+
+Part 2:Race Detector:-
+This is the static data race detector implementation consists of seven rules, one rule per file which checks the input Rapid program for data race.
 
 
 Static data race detector working:-
