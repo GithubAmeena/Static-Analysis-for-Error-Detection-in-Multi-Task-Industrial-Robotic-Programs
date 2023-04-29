@@ -1,0 +1,56 @@
+BEGINTASK<Task1, Null>
+	MODULE Module1
+	CONST robtarget Target_10 :=[[326.494, 0, 634.740], [0.104, 0, 0.983, 0], [-1, 0, -1, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Target_20 :=[[474.642, 0, 298.999], [0.087, 0, 0.996, 0], [-1, 0, 0, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Target_30 :=[[17.446, 0, 764.740], [0.809, 0, 0.587, 0], [0, -1, 0, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	PERS bool obstacle := FALSE;
+	PERS bool startsync := TRUE;
+	PROC MAIN()
+		startsync := TRUE ;
+		IF do1=1 THEN
+		    obstacle := TRUE;
+		    Path_backward;
+		ELSE
+		    Path_forward;
+		ENDIF
+	ENDPROC
+	PROC Path_forward()
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_20,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+	ENDPROC
+	PROC Path_backward()
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_30,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+	ENDPROC
+ 	ENDMODULE
+ENDTASK		
+
+BEGINTASK<Task2, Null>
+	MODULE Module1
+	CONST robtarget Target_10 :=[[195.6535, -502.4544, 902.740], [0.617, 0, 0.786, 0], [-1, 0, -1, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Target_20 :=[[576.642, -502.4544, 408.999], [0.087, 0, 0.996, 0], [-1, 0, 0, 0], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	CONST robtarget Target_30 :=[[-234.446, -502.4544, 880.740], [0.868, 0, 0.495, 0], [-1, 0, -1, 4], [9E+09, 9E+09, 9E+09, 9E+09, 9E+09, 9E+09]];
+	PERS bool obstacle := FALSE ;
+	PERS bool startsync ;
+	PROC MAIN()
+	WaitUntil startsync1 ;
+		IF obstacle=FALSE THEN
+		    Path_forward;
+		ELSE
+		    Path_backward;
+		ENDIF
+	ENDPROC
+	PROC Path_forward()
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_20,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+	ENDPROC
+	PROC Path_backward()
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_30,v1000,z100,MyTool\WObj:=wobj0;
+		MoveJ Target_10,v1000,z100,MyTool\WObj:=wobj0;
+	ENDPROC
+	ENDMODULE
+ENDTASK		
