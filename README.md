@@ -1,4 +1,5 @@
 Static Analysis for Error Detection in Multi-Task Industrial Robotic Programs
+
 This project implements a static analysis tool to detect potential errors in multi-task programs for industrial robots. Specifically, it targets the ABB Rapid Programming Language and verifies the correct synchronization and usage of shared variables across multiple tasks. The analysis tool identifies whether a given multi-task program is potentially erroneous by checking adherence to a set of predefined rules.
 
 Project Structure
